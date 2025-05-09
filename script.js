@@ -1,7 +1,8 @@
 const output = document.getElementById("output");
 
-// Step 1: Add the loading row initially
+// Step 1: Add the loading row initially (add id="loading")
 const loadingRow = document.createElement("tr");
+loadingRow.setAttribute("id", "loading");
 loadingRow.innerHTML = `<td colspan="2">Loading...</td>`;
 output.appendChild(loadingRow);
 
@@ -24,7 +25,8 @@ Promise.all(promises).then(results => {
   const totalTime = (endTime - startTime) / 1000;
 
   // Remove the loading row
-  output.innerHTML = "";
+  const loading = document.getElementById("loading");
+  if (loading) loading.remove();
 
   // Populate results
   results.forEach(result => {
